@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Via Norte | Trânsito e Infraestrutura</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { via: '#07569a', 'via-dark': '#06477f', text: '#1d2b39', muted: '#6d7b88', border: '#dce4ea' }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="m-0 bg-[#edf2f6] text-text font-sans text-[14px]">
+  <div id="app">
+    <section id="loginView"
+      class="min-h-screen flex items-center justify-center p-6 bg-[linear-gradient(160deg,#f2f7fb_60%,#d9eef9_60%)]">
+      <div
+        class="w-full max-w-[420px] bg-white border border-border rounded-[14px] p-7 px-[30px] shadow-[0_12px_35px_#14334d18] z-[1] max-[480px]:px-5 max-[480px]:py-[25px] min-[700px]:py-[34px] min-[700px]:px-[38px]">
+        <div class="text-center">
+          <img src="assets/logovianorte.svg" width="0" height="150" alt="Logo Via Norte"
+            class="block w-[150px] h-[100px] object-contain mx-auto mb-2" onerror="this.style.display='none'">
+          <div class="text-[28px] font-extrabold text-[#164d7d] tracking-[.2px]"></div>
+          <p class="text-xs text-muted leading-[1.5] mt-[7px] mb-[25px]">Informações de trânsito e
+            infraestrutura<br>viária de Caraguatatuba</p>
+        </div>
+        <form id="loginForm">
+          <label for="email" class="block text-[13px] font-bold mt-[15px] mb-[7px]">E-mail</label>
+          <input id="email" type="email" placeholder="Digite seu e-mail" required
+            class="w-full border border-[#cfd9e1] rounded-[7px] p-3 bg-white outline-none text-text focus:border-[#267dbb] focus:shadow-[0_0_0_3px_#267dbb18]">
+          <label for="password" class="block text-[13px] font-bold mt-[15px] mb-[7px]">Senha</label>
+          <div class="relative">
+            <input id="password" type="password" placeholder="Digite sua senha" required minlength="4"
+              class="w-full border border-[#cfd9e1] rounded-[7px] p-3 pr-[45px] bg-white outline-none text-text focus:border-[#267dbb] focus:shadow-[0_0_0_3px_#267dbb18]">
+            <button type="button" id="togglePassword" aria-label="Mostrar senha"
+              class="absolute right-[7px] top-1 h-[35px] w-[35px] border-0 bg-transparent text-[#637789] cursor-pointer">◉</button>
+          </div>
+          <button
+            class="w-full mt-[18px] border border-via rounded-[7px] py-3 px-5 font-bold bg-via text-white hover:bg-via-dark cursor-pointer"
+            type="submit">Entrar</button>
+          <button class="block mx-auto mt-3 border-0 bg-transparent text-via underline text-xs cursor-pointer"
+            id="forgotPassword" type="button">Esqueci minha senha</button>
+          <p class="text-[11px] text-[#82909c] text-center mt-[18px] leading-[1.5]">Demonstração: informe qualquer
+            e-mail válido e senha com 4 ou mais caracteres.</p>
+        </form>
+      </div>
+      <div aria-hidden="true"
+        class="fixed bottom-0 left-0 right-0 h-[75px] bg-[linear-gradient(170deg,transparent_30%,#9bd3ef_31%_60%,#c7e7f3_61%)] opacity-45">
+      </div>
+    </section>
+
+    <section id="mainView" class="hidden min-h-screen pb-[78px]">
+      <header
+        class="h-[58px] bg-via text-white flex items-center justify-between px-[max(18px,calc((100%-850px)/2))] shadow-[0_2px_7px_#0002]">
+        <div class="flex items-center gap-2.5 text-[17px]">
+          <img src="assets/logovianorte.svg" width="35" height="100" alt="Logo Via Norte"
+            class="w-[35px] h-[35px] object-contain" onerror="this.style.display='none'">
+          <strong></strong>
+        </div>
+        <button id="logoutBtn" title="Sair"
+          class="bg-white/[.11] text-white border border-white/[.19] rounded-md py-2 px-3 cursor-pointer">Sair
+          ↪</button>
+      </header>
+
+      <main
+        class="max-w-[850px] mx-auto px-[18px] pt-[25px] pb-[30px] min-[700px]:pt-8 max-[480px]:px-[13px] max-[480px]:pt-5">
+        <section id="homePage" class="page">
+          <h1 class="text-[22px] leading-[1.2] m-0 mb-[9px] max-[480px]:text-xl">Olá!</h1>
+          <p class="text-muted leading-[1.5] m-0 mb-5">Acompanhe as informações de trânsito e infraestrutura viária de
+            Caraguatatuba.</p>
+          <div class="bg-[#fff8e6] border border-[#f2dfa5] rounded-[9px] p-[14px_16px] my-[18px] mb-[22px] text-[13px]">
+            <strong class="text-[#765a00]">⚠ Avisos importantes</strong>
+            <p class="mt-[7px] mb-0 text-[#6d6652] text-xs leading-[1.5]">Consulte as condições das vias antes de sair.
+              As informações desta demonstração são ilustrativas.</p>
+          </div>
+          <div class="grid gap-3">
+            <button data-page="trafficPage"
+              class="feature grid grid-cols-[48px_1fr_20px] items-center gap-3 text-left border border-border rounded-[10px] p-[15px] bg-white text-text hover:-translate-y-px hover:shadow-[0_4px_15px_#1233] cursor-pointer">
+              <span
+                class="w-[45px] h-[45px] rounded-[9px] grid place-items-center bg-[#e1effb] text-[23px]">🚘</span><span><b
+                  class="block mb-1.5">Situação do Trânsito</b><small class="block text-muted leading-[1.4]">Veja como
+                  está o trânsito nos principais locais da cidade.</small></span><span>›</span>
+            </button>
+            <button data-page="worksPage"
+              class="feature grid grid-cols-[48px_1fr_20px] items-center gap-3 text-left border border-border rounded-[10px] p-[15px] bg-white text-text hover:-translate-y-px hover:shadow-[0_4px_15px_#1233] cursor-pointer">
+              <span
+                class="w-[45px] h-[45px] rounded-[9px] grid place-items-center bg-[#dcf6e9] text-[23px]">🚧</span><span><b
+                  class="block mb-1.5">Obras e Interdições</b><small class="block text-muted leading-[1.4]">Confira as
+                  obras e interdições em Caraguatatuba.</small></span><span>›</span>
+            </button>
+            <button data-page="incidentsPage"
+              class="feature grid grid-cols-[48px_1fr_20px] items-center gap-3 text-left border border-border rounded-[10px] p-[15px] bg-white text-text hover:-translate-y-px hover:shadow-[0_4px_15px_#1233] cursor-pointer">
+              <span
+                class="w-[45px] h-[45px] rounded-[9px] grid place-items-center bg-[#eee5ff] text-[23px]">⚠</span><span><b
+                  class="block mb-1.5">Ocorrências</b><small class="block text-muted leading-[1.4]">Consulte ocorrências
+                  registradas ou informe um problema.</small></span><span>›</span>
+            </button>
+          </div>
+        </section>
+
+        <section id="trafficPage" class="page hidden">
+          <h1 class="text-[22px] leading-[1.2] m-0 mb-[9px] max-[480px]:text-xl">🚘 Situação do Trânsito</h1>
+          <input
+            class="w-full border border-[#cfd9e1] rounded-[7px] p-3 bg-white outline-none text-text mt-[14px] mb-3 focus:border-[#267dbb] focus:shadow-[0_0_0_3px_#267dbb18]"
+            id="trafficSearch" placeholder="⌕  Buscar por local...">
+          <div class="flex gap-2 flex-wrap my-2.5 mb-[18px]" id="trafficFilters">
+            <button
+              class="chip active border border-via rounded-[22px] bg-via text-white py-2 px-[15px] text-xs cursor-pointer"
+              data-filter="Todos">Todos</button>
+            <button
+              class="chip border border-border rounded-[22px] bg-white py-2 px-[15px] text-[#465664] text-xs cursor-pointer"
+              data-filter="Normal">🟢 Normal</button>
+            <button
+              class="chip border border-border rounded-[22px] bg-white py-2 px-[15px] text-[#465664] text-xs cursor-pointer"
+              data-filter="Atenção">🟡 Atenção</button>
+            <button
+              class="chip border border-border rounded-[22px] bg-white py-2 px-[15px] text-[#465664] text-xs cursor-pointer"
+              data-filter="Intenso">🔴 Intenso</button>
+          </div>
+          <div id="trafficList" class="grid gap-2.5"></div>
+        </section>
+
+        <section id="worksPage" class="page hidden">
+          <h1 class="text-[22px] leading-[1.2] m-0 mb-[9px] max-[480px]:text-xl">🚧 Obras, Interdições e Ocorrências
+          </h1>
+          <div class="flex bg-[#e9eff4] p-1 rounded-lg my-[18px] mb-3">
+            <button class="flex-1 border-0 rounded-md py-2.5 bg-via text-white cursor-pointer" data-kind="works">Obras e
+              Interdições</button>
+            <button class="flex-1 border-0 rounded-md py-2.5 bg-transparent text-[#536574] cursor-pointer"
+              data-kind="incidents">Ocorrências</button>
+          </div>
+          <input
+            class="w-full border border-[#cfd9e1] rounded-[7px] p-3 bg-white outline-none text-text mt-[14px] mb-3 focus:border-[#267dbb] focus:shadow-[0_0_0_3px_#267dbb18]"
+            id="worksSearch" placeholder="⌕  Buscar por local...">
+          <div id="worksList" class="grid gap-2.5"></div>
+        </section>
+
+        <section id="incidentsPage" class="page hidden">
+          <h1 class="text-[22px] leading-[1.2] m-0 mb-[9px] max-[480px]:text-xl">⚠ Registrar Ocorrência</h1>
+          <form id="incidentForm" class="bg-white border border-border rounded-[10px] p-5">
+            <label for="incidentType" class="block text-[13px] font-bold mt-[14px] mb-[7px] first:mt-0">Tipo de
+              ocorrência *</label>
+            <select id="incidentType" required
+              class="w-full border border-[#cfd9e1] rounded-[7px] p-3 bg-white outline-none text-text focus:border-[#267dbb] focus:shadow-[0_0_0_3px_#267dbb18]">
+              <option value="">Selecione o tipo</option>
+              <option>Acidente</option>
+              <option>Buraco na via</option>
+              <option>Alagamento</option>
+              <option>Semáforo com defeito</option>
+              <option>Obra ou interdição</option>
+              <option>Outro</option>
+            </select>
+            <label for="incidentLocation" class="block text-[13px] font-bold mt-[14px] mb-[7px]">Local *</label>
+            <input id="incidentLocation" placeholder="Informe o local" required
+              class="w-full border border-[#cfd9e1] rounded-[7px] p-3 bg-white outline-none text-text focus:border-[#267dbb] focus:shadow-[0_0_0_3px_#267dbb18]">
+            <div class="grid grid-cols-2 gap-3.5 max-[480px]:grid-cols-1">
+              <div><label for="incidentDate" class="block text-[13px] font-bold mt-[14px] mb-[7px]">Data *</label><input
+                  id="incidentDate" type="date" required
+                  class="w-full border border-[#cfd9e1] rounded-[7px] p-3 bg-white outline-none text-text"></div>
+              <div><label for="incidentTime" class="block text-[13px] font-bold mt-[14px] mb-[7px]">Horário
+                  *</label><input id="incidentTime" type="time" required
+                  class="w-full border border-[#cfd9e1] rounded-[7px] p-3 bg-white outline-none text-text"></div>
+            </div>
+            <label for="incidentDescription" class="block text-[13px] font-bold mt-[14px] mb-[7px]">Descrição *</label>
+            <textarea id="incidentDescription" maxlength="500" placeholder="Descreva o que aconteceu..." required
+              class="w-full border border-[#cfd9e1] rounded-[7px] p-3 bg-white outline-none text-text min-h-[105px] resize-y focus:border-[#267dbb] focus:shadow-[0_0_0_3px_#267dbb18]"></textarea>
+            <div class="text-right text-muted text-[11px] mt-[5px]"><span id="charCount">0</span>/500</div>
+            <div class="flex justify-end gap-2.5 mt-5 max-[480px]:flex-col-reverse"><button
+                class="border border-[#cbd6df] rounded-[7px] py-3 px-5 font-bold bg-white text-via cursor-pointer max-[480px]:w-full"
+                type="reset">Limpar</button><button
+                class="border border-via rounded-[7px] py-3 px-5 font-bold bg-via text-white cursor-pointer hover:bg-via-dark max-[480px]:w-full"
+                type="submit">Enviar ocorrência</button></div>
+          </form>
+        </section>
+      </main>
+
+      <nav class="fixed bottom-0 left-0 right-0 h-[68px] bg-white border-t border-border flex justify-center z-[5]">
+        <button
+          class="nav-item active w-1/4 max-w-[180px] border-0 bg-white text-via text-[11px] flex flex-col items-center justify-center gap-1 font-bold cursor-pointer"
+          data-page="homePage"><span class="text-xl">⌂</span>Início</button>
+        <button
+          class="nav-item w-1/4 max-w-[180px] border-0 bg-white text-[#7a8995] text-[11px] flex flex-col items-center justify-center gap-1 cursor-pointer"
+          data-page="trafficPage"><span class="text-xl">🚘</span>Trânsito</button>
+        <button
+          class="nav-item w-1/4 max-w-[180px] border-0 bg-white text-[#7a8995] text-[11px] flex flex-col items-center justify-center gap-1 cursor-pointer"
+          data-page="worksPage"><span class="text-xl">🚧</span>Obras</button>
+        <button
+          class="nav-item w-1/4 max-w-[180px] border-0 bg-white text-[#7a8995] text-[11px] flex flex-col items-center justify-center gap-1 cursor-pointer"
+          data-page="incidentsPage"><span class="text-xl">⚠</span>Ocorrências</button>
+      </nav>
+    </section>
+    <div id="toast" role="status"
+      class="fixed bottom-[88px] left-1/2 -translate-x-1/2 bg-[#17354c] text-white py-3 px-[18px] rounded-lg shadow-[0_4px_18px_#0003] z-10 hidden max-w-[90%] text-center">
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
